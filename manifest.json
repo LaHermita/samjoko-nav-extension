@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Samjoko Nav Extension",
+  "name": "__MSG_nombreExtension__",
   "version": "0.1.0",
-  "description": "Captura el contenido de páginas web y lo convierte a Markdown",
+  "description": "__MSG_descripcionExtension__",
+  "default_locale": "es",
   "permissions": [
     "activeTab",
     "scripting",
@@ -14,7 +15,7 @@
   },
   "action": {
     "default_popup": "ventana-emergente/ventana.html",
-    "default_title": "Samjoko Nav",
+    "default_title": "__MSG_tituloAccion__",
     "default_icon": {
       "16": "icons/icono-16.png",
       "32": "icons/icono-32.png"

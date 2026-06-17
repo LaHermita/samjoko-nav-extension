@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="samjoko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/themes.css">
   <link rel="stylesheet" href="ventana.css">
-  <title>Samjoko Nav</title>
+  <title></title>
 </head>
 <body>
   <div id="contenedor">
-    <h1>Samjoko Nav</h1>
-    <button id="botonCapturar">Capturar página como Markdown</button>
+    <h1></h1>
+    <button id="botonCapturar"></button>
+    <div id="zonaProgreso"></div>
     <div id="areaResultado" class="oculto">
       <textarea id="textoMarkdown" readonly></textarea>
       <div id="acciones">
-        <button id="botonCopiar">Copiar al portapapeles</button>
-        <button id="botonDescargar">Descargar .md</button>
-        <button id="botonGuardar" class="botonGuardar">Guardar en carpeta</button>
+        <button id="botonCopiar"></button>
+        <button id="botonDescargar"></button>
+        <button id="botonGuardar" class="botonGuardar"></button>
       </div>
     </div>
     <p id="mensajeEstado"></p>
     <p id="enlaceOpciones">
-      <a href="#" id="abrirOpciones">Configurar carpeta de destino...</a>
+      <a href="#" id="abrirOpciones"></a>
     </p>
   </div>
   <script src="../base-datos.js"></script>
+  <script src="../componentes/barra-progreso.js"></script>
   <script src="ventana.js"></script>
 </body>
 </html>

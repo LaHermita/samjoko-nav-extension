@@ -1,0 +1,161 @@
+{
+  "nombreExtension": {
+    "message": "Samjoko Nav Extension"
+  },
+  "descripcionExtension": {
+    "message": "Captures web page content and converts it to Markdown"
+  },
+  "tituloAccion": {
+    "message": "Samjoko Nav"
+  },
+
+  "tituloPopup": {
+    "message": "Samjoko Nav"
+  },
+  "botonCapturar": {
+    "message": "Capture page as Markdown"
+  },
+  "botonCopiar": {
+    "message": "Copy to clipboard"
+  },
+  "botonDescargar": {
+    "message": "Download .md"
+  },
+  "botonGuardar": {
+    "message": "Save to folder"
+  },
+  "enlaceOpciones": {
+    "message": "Configure destination folder..."
+  },
+
+  "tituloOpciones": {
+    "message": "Samjoko Nav — Options"
+  },
+  "seccionCarpeta": {
+    "message": "Destination folder"
+  },
+  "descripcionCarpeta": {
+    "message": "Select the folder where Markdown files will be saved."
+  },
+  "botonSeleccionar": {
+    "message": "Select folder..."
+  },
+  "etiquetaCarpetaActual": {
+    "message": "Current folder:"
+  },
+  "botonQuitarCarpeta": {
+    "message": "Remove folder"
+  },
+
+  "barraProgresoExtrayendo": {
+    "message": "Extracting content..."
+  },
+  "barraProgresoConectando": {
+    "message": "Connecting to page..."
+  },
+  "barraProgresoPreparando": {
+    "message": "Preparing file..."
+  },
+  "barraProgresoVerificando": {
+    "message": "Checking file name..."
+  },
+  "barraProgresoGuardando": {
+    "message": "Saving file..."
+  },
+
+  "mensajeCapturaExitosa": {
+    "message": "Content captured successfully"
+  },
+  "mensajeCopiado": {
+    "message": "Copied to clipboard"
+  },
+  "mensajeCarpetaEliminada": {
+    "message": "Folder removed"
+  },
+  "mensajeCarpetaSeleccionada": {
+    "message": "Folder selected: $nombre$",
+    "placeholders": {
+      "nombre": {
+        "content": "$1",
+        "example": "MyVault"
+      }
+    }
+  },
+  "mensajeGuardadoComo": {
+    "message": "Saved as $archivo$",
+    "placeholders": {
+      "archivo": {
+        "content": "$1",
+        "example": "SAM - article.md"
+      }
+    }
+  },
+  "mensajeDescargadoComo": {
+    "message": "Downloaded as $archivo$",
+    "placeholders": {
+      "archivo": {
+        "content": "$1",
+        "example": "SAM - article.md"
+      }
+    }
+  },
+
+  "errorPestaniaActiva": {
+    "message": "Could not access the active tab"
+  },
+  "errorSinContenido": {
+    "message": "No content found on the page"
+  },
+  "errorGenerico": {
+    "message": "Error: $detalle$",
+    "placeholders": {
+      "detalle": {
+        "content": "$1",
+        "example": "Connection error"
+      }
+    }
+  },
+  "errorCopiado": {
+    "message": "Could not copy to clipboard"
+  },
+  "errorSinCarpeta": {
+    "message": "No folder configured. Open Options to select one."
+  },
+  "errorGuardado": {
+    "message": "Error saving: $detalle$",
+    "placeholders": {
+      "detalle": {
+        "content": "$1",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "errorSeleccionCarpeta": {
+    "message": "Error selecting folder: $detalle$",
+    "placeholders": {
+      "detalle": {
+        "content": "$1",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "errorSWCarpetaNoConfigurada": {
+    "message": "Folder not configured. Open Options and select it again."
+  },
+  "errorSWPermisoDenegado": {
+    "message": "Permission denied. Re-select the folder in Options."
+  },
+
+  "seccionEnlaces": {
+    "message": "Links"
+  },
+  "seccionFuente": {
+    "message": "Source"
+  },
+  "textoSinTitulo": {
+    "message": " (untitled)"
+  },
+  "fallbackTituloArchivo": {
+    "message": "untitled-page"
+  }
+}

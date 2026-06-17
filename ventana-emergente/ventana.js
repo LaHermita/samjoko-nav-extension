@@ -1,3 +1,6 @@
+const zonaProgreso = document.getElementById('zonaProgreso');
+const barra = new BarraProgreso(zonaProgreso);
+
 const botonCapturar = document.getElementById('botonCapturar');
 const areaResultado = document.getElementById('areaResultado');
 const textoMarkdown = document.getElementById('textoMarkdown');
@@ -7,21 +10,34 @@ const botonGuardar = document.getElementById('botonGuardar');
 const mensajeEstado = document.getElementById('mensajeEstado');
 const abrirOpciones = document.getElementById('abrirOpciones');
 
+let tituloPagina = '';
+
+(function inicializarI18n() {
+  document.title = chrome.i18n.getMessage('tituloPopup');
+  document.querySelector('h1').textContent = chrome.i18n.getMessage('tituloPopup');
+  botonCapturar.textContent = chrome.i18n.getMessage('botonCapturar');
+  botonCopiar.textContent = chrome.i18n.getMessage('botonCopiar');
+  botonDescargar.textContent = chrome.i18n.getMessage('botonDescargar');
+  botonGuardar.textContent = chrome.i18n.getMessage('botonGuardar');
+  abrirOpciones.textContent = chrome.i18n.getMessage('enlaceOpciones');
+})();
+
 function mostrarMensaje(texto, esError = false) {
   mensajeEstado.textContent = texto;
-  mensajeEstado.style.color = esError ? '#e94560' : '#a0a0a0';
+  mensajeEstado.className = esError ? 'mensaje-error' : 'mensaje-info';
 }
 
 async function capturarPagina() {
   botonCapturar.disabled = true;
-  botonCapturar.textContent = 'Capturando...';
-  mostrarMensaje('Extrayendo contenido...');
+  barra.mostrar('indeterminado', chrome.i18n.getMessage('barraProgresoExtrayendo'));
+  mostrarMensaje('');
 
   try {
     const [pestania] = await chrome.tabs.query({ active: true, currentWindow: true });
 
     if (!pestania?.id) {
-      mostrarMensaje('No se pudo acceder a la pestaña activa', true);
+      barra.ocultar();
+      mostrarMensaje(chrome.i18n.getMessage('errorPestaniaActiva'), true);
       return;
     }
 
@@ -29,7 +45,7 @@ async function capturarPagina() {
     try {
       resultado = await chrome.tabs.sendMessage(pestania.id, { accion: 'extraerMarkdown' });
     } catch {
-      mostrarMensaje('Conectando con la página...');
+      barra.establecerTexto(chrome.i18n.getMessage('barraProgresoConectando'));
       await chrome.scripting.executeScript({
         target: { tabId: pestania.id },
         files: ['extractor-contenido.js']
@@ -37,45 +53,58 @@ async function capturarPagina() {
       resultado = await chrome.tabs.sendMessage(pestania.id, { accion: 'extraerMarkdown' });
     }
 
+    barra.ocultar();
+
     if (resultado?.markdown) {
       textoMarkdown.value = resultado.markdown;
+      tituloPagina = resultado.titulo || pestania.title || '';
       areaResultado.classList.remove('oculto');
-      mostrarMensaje('Contenido capturado correctamente');
+      mostrarMensaje(chrome.i18n.getMessage('mensajeCapturaExitosa'));
     } else {
-      mostrarMensaje('No se encontró contenido en la página', true);
+      mostrarMensaje(chrome.i18n.getMessage('errorSinContenido'), true);
     }
   } catch (error) {
-    mostrarMensaje('Error: ' + error.message, true);
+    barra.ocultar();
+    mostrarMensaje(chrome.i18n.getMessage('errorGenerico', error.message), true);
   } finally {
     botonCapturar.disabled = false;
-    botonCapturar.textContent = 'Capturar página como Markdown';
   }
 }
 
 async function guardarEnCarpeta() {
-  const manejador = await obtenerDirectorio();
+  const verificacion = await chrome.runtime.sendMessage({ accion: 'verificarDirectorio' });
 
-  if (!manejador) {
-    mostrarMensaje('Primero configurá una carpeta en Opciones', true);
+  if (!verificacion.tieneCarpeta) {
+    mostrarMensaje(chrome.i18n.getMessage('errorSinCarpeta'), true);
     return;
   }
 
-  const tienePermiso = await verificarPermiso(manejador);
-  if (!tienePermiso) {
-    mostrarMensaje('Permiso denegado para la carpeta', true);
-    return;
-  }
+  barra.mostrar('indeterminado', chrome.i18n.getMessage('barraProgresoPreparando'));
+  mostrarMensaje('');
+  botonGuardar.disabled = true;
 
   try {
-    const nombreBase = `${obtenerNombreDesdeTitulo(document.title)}.md`;
-    const nombreArchivo = await obtenerNombreArchivoUnico(manejador, nombreBase);
-    const archivoHandle = await manejador.getFileHandle(nombreArchivo, { create: true });
-    const writable = await archivoHandle.createWritable();
-    await writable.write(textoMarkdown.value);
-    await writable.close();
-    mostrarMensaje(`Guardado como ${nombreArchivo}`);
+    const nombreBase = `${obtenerNombreDesdeTitulo(tituloPagina)}.md`;
+
+    barra.establecerTexto(chrome.i18n.getMessage('barraProgresoGuardando'));
+    const resultado = await chrome.runtime.sendMessage({
+      accion: 'guardarArchivo',
+      contenido: textoMarkdown.value,
+      nombreArchivo: nombreBase
+    });
+
+    barra.ocultar();
+
+    if (resultado.error) {
+      mostrarMensaje(resultado.mensaje || chrome.i18n.getMessage('errorGuardado', ''), true);
+    } else {
+      mostrarMensaje(chrome.i18n.getMessage('mensajeGuardadoComo', resultado.nombreArchivo));
+    }
   } catch (error) {
-    mostrarMensaje('Error al guardar: ' + error.message, true);
+    barra.ocultar();
+    mostrarMensaje(chrome.i18n.getMessage('errorGuardado', error.message), true);
+  } finally {
+    botonGuardar.disabled = false;
   }
 }
 
@@ -84,22 +113,22 @@ botonCapturar.addEventListener('click', capturarPagina);
 botonCopiar.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(textoMarkdown.value);
-    mostrarMensaje('Copiado al portapapeles');
+    mostrarMensaje(chrome.i18n.getMessage('mensajeCopiado'));
   } catch {
-    mostrarMensaje('No se pudo copiar', true);
+    mostrarMensaje(chrome.i18n.getMessage('errorCopiado'), true);
   }
 });
 
 botonDescargar.addEventListener('click', () => {
-  const nombreArchivo = `${obtenerNombreDesdeTitulo(document.title)}.md`;
+  const nombreArchivoFinal = `${obtenerNombreDesdeTitulo(tituloPagina)}.md`;
   const blob = new Blob([textoMarkdown.value], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
   const enlace = document.createElement('a');
   enlace.href = url;
-  enlace.download = nombreArchivo;
+  enlace.download = nombreArchivoFinal;
   enlace.click();
   URL.revokeObjectURL(url);
-  mostrarMensaje(`Descargado como ${nombreArchivo}`);
+  mostrarMensaje(chrome.i18n.getMessage('mensajeDescargadoComo', nombreArchivoFinal));
 });
 
 botonGuardar.addEventListener('click', guardarEnCarpeta);

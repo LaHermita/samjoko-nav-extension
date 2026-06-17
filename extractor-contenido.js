@@ -10,112 +10,91 @@ function convertirElementoAmarkdown(elemento) {
     return elemento.textContent.trim();
   }
 
-  if (etiqueta === 'li') {
-    const padre = elemento.closest('ol');
-    if (padre) {
-      const index = Array.from(padre.children).indexOf(elemento) + 1;
-      return `${index}. ${elemento.textContent.trim()}`;
-    }
-    return `- ${elemento.textContent.trim()}`;
+  if (etiqueta === 'blockquote') {
+    return elemento.textContent.trim().split('\n').map(linea => `> ${linea}`).join('\n');
   }
 
   if (etiqueta === 'pre' || etiqueta === 'code') {
-    const codigo = elemento.textContent.trim();
-    return '```\n' + codigo + '\n```';
+    return '```\n' + elemento.textContent.trim() + '\n```';
   }
 
-  if (etiqueta === 'blockquote') {
-    return `> ${elemento.textContent.trim()}`;
+  if (etiqueta === 'ul' || etiqueta === 'ol') {
+    const items = Array.from(elemento.children).filter(li => li.tagName === 'LI');
+    return items.map((li, idx) => {
+      const prefijo = etiqueta === 'ol' ? `${idx + 1}. ` : '- ';
+      return `${prefijo}${li.textContent.trim()}`;
+    }).join('\n');
   }
 
-  if (etiqueta === 'hr') {
-    return '---';
-  }
-
-  return null;
+  return elemento.textContent.trim();
 }
 
-function extraerEnlaces(elemento) {
-  const enlaces = elemento.querySelectorAll('a[href]');
-  if (enlaces.length === 0) return '';
-  const lineas = [];
-  enlaces.forEach((enlace, indice) => {
-    const texto = enlace.textContent.trim();
-    const href = enlace.getAttribute('href');
-    if (texto && href && !href.startsWith('javascript:') && !href.startsWith('#')) {
-      lineas.push(`${indice + 1}. [${texto}](${href})`);
-    }
+function extraerEnlaces(documento) {
+  const enlaces = Array.from(documento.querySelectorAll('a[href]'));
+  const enlacesUtiles = enlaces.filter(a => {
+    const href = a.getAttribute('href');
+    return href && !href.startsWith('javascript:') && !href.startsWith('#');
   });
-  if (lineas.length === 0) return '';
-  return '\n\n## Enlaces\n' + lineas.join('\n');
+  return enlacesUtiles.map(a => `- [${a.textContent.trim()}](${a.href})`).join('\n');
 }
 
-function extraerMarkdown() {
-  const elementos = document.body.querySelectorAll(
-    'h1, h2, h3, h4, h5, h6, p, li, pre, blockquote, hr'
-  );
-
-  const lineas = [];
-  let ultimaEtiqueta = '';
-
-  for (const elemento of elementos) {
-    if (elemento.closest('script, style, nav, footer, header, aside')) continue;
-
-    const resultado = convertirElementoAmarkdown(elemento);
-
-    if (resultado === null) continue;
-
-    if (ultimaEtiqueta.startsWith('h') || ultimaEtiqueta === 'hr' || ultimaEtiqueta === 'pre') {
-      lineas.push('');
-    } else if (etiquetaEsSeparador(ultimaEtiqueta, elemento.tagName.toLowerCase())) {
-      lineas.push('');
-    }
-
-    lineas.push(resultado);
-
-    if (elemento.tagName.toLowerCase().startsWith('h')) {
-      lineas.push('');
-    }
-
-    ultimaEtiqueta = elemento.tagName.toLowerCase();
-  }
-
-  let markdown = lineas.join('\n').replace(/\n{3,}/g, '\n\n').trim();
-
-  markdown += extraerEnlaces(document.body);
-
-  const titulo = document.title;
-  if (titulo) {
-    markdown = `# ${titulo}\n\n${markdown}`;
-  }
-
-  const url = window.location.href;
-  markdown += `\n\n---\n*Fuente: [${url}](${url})*`;
-
-  return markdown;
-}
-
-function etiquetaEsSeparador(anterior, actual) {
-  if (!anterior) return false;
-  const grupoAnterior = obtenerGrupo(anterior);
-  const grupoActual = obtenerGrupo(actual);
-  return grupoAnterior !== grupoActual;
+function etiquetaEsSeparador(etiqueta) {
+  return ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'table', 'ul', 'ol', 'blockquote', 'pre'].includes(etiqueta);
 }
 
 function obtenerGrupo(etiqueta) {
-  if (etiqueta.startsWith('h')) return 'heading';
-  if (etiqueta === 'p') return 'texto';
-  if (etiqueta === 'li') return 'lista';
-  if (etiqueta === 'pre' || etiqueta === 'code') return 'codigo';
-  if (etiqueta === 'blockquote') return 'cita';
-  if (etiqueta === 'hr') return 'separador';
-  return 'otro';
+  if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(etiqueta)) return 'heading';
+  if (['p', 'blockquote'].includes(etiqueta)) return 'text';
+  if (['ul', 'ol'].includes(etiqueta)) return 'list';
+  if (['pre', 'code'].includes(etiqueta)) return 'code';
+  if (etiqueta === 'table') return 'table';
+  return 'other';
 }
 
-chrome.runtime.onMessage.addListener((peticion, remitente, responder) => {
-  if (peticion.accion === 'extraerMarkdown') {
-    const markdown = extraerMarkdown();
-    responder({ markdown: markdown });
+function extraerMarkdown(documento) {
+  const elementos = Array.from(documento.querySelectorAll(
+    'h1, h2, h3, h4, h5, h6, p, ul, ol, pre, code, blockquote, table'
+  ));
+
+  const elementosFiltrados = elementos.filter(elemento =>
+    !elemento.closest('script, style, nav, footer, header, aside')
+  );
+
+  let resultado = '';
+  let grupoAnterior = '';
+
+  for (const elemento of elementosFiltrados) {
+    const etiqueta = elemento.tagName.toLowerCase();
+    const grupoActual = obtenerGrupo(etiqueta);
+
+    if (grupoAnterior && grupoActual !== grupoAnterior) {
+      resultado += '\n';
+    }
+
+    const md = convertirElementoAmarkdown(elemento);
+    if (md) {
+      resultado += md + '\n\n';
+      grupoAnterior = grupoActual;
+    }
   }
-  return true;
+
+  const titulo = documento.title
+    ? documento.title.replace(/\s*[-–|]\s*.*$/, '').trim()
+    : chrome.i18n.getMessage('textoSinTitulo');
+
+  const encabezado = `# ${titulo}\n\n`;
+  const enlaces = extraerEnlaces(documento);
+  const seccionEnlaces = enlaces
+    ? `\n\n## ${chrome.i18n.getMessage('seccionEnlaces')}\n\n${enlaces}`
+    : '';
+  const fuente = `\n\n---\n*${chrome.i18n.getMessage('seccionFuente')}: ${documento.URL}*`;
+
+  return encabezado + resultado.trim() + seccionEnlaces + fuente;
+}
+
+chrome.runtime.onMessage.addListener((mensaje, remitente, responder) => {
+  if (mensaje.accion === 'extraerMarkdown') {
+    const contenido = extraerMarkdown(document);
+    responder({ markdown: contenido });
+  }
 });

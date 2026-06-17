@@ -27,6 +27,24 @@ Este proyecto sigue convenciones estrictas. Todo el código y documentación gen
 
 ---
 
+## Reglas de tematización (CSS)
+
+- **Todo CSS debe usar variables** definidas en [`assets/themes.css`](assets/themes.css). No se permiten colores hardcodeados en los estilos ni en JavaScript.
+- **Los HTML de la extensión deben cargar `themes.css` antes que su CSS propio** y llevar el atributo `data-theme="samjoko"` en el `<html>` (tema oscuro por defecto).
+- **No usar `.style.color` ni `.style.background` en JS.** Usar clases CSS temáticas (`.mensaje-error` → `--estado-error`, `.mensaje-exito` → `--estado-exito`, `.mensaje-info` → `--texto-inactivo`).
+- **Los estados hover** deben usar `filter: brightness(…)` en vez de colores fijos, para adaptarse a cualquier tema.
+- **Los iconos deben ser SVG inline** (tipo [Heroicons](https://heroicons.dev/)), con `fill="none"` o `fill="currentColor"` y `stroke="currentColor"` para heredar el color del tema vía `var(--color-icono)` o la variable que corresponda. No usar PNG fuera de los assets requeridos por el navegador (`manifest.json`).
+- Para cambiar de tema, modificar `data-theme` en el `<html>`. Temas disponibles:
+
+| Tema | `data-theme` |
+|------|-------------|
+| Samjoko (oscuro, por defecto) | `samjoko` |
+| Vivero (natural claro) | `vivero` |
+| Nautilus (cálido) | `nautilus` |
+| Akkoro (cyberpunk) | `akkoro` |
+
+---
+
 ## Reglas de documentación (resumen)
 
 Los documentos usan prefijo de tipo documental según la taxonomía V2:

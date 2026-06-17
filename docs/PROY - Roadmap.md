@@ -1,43 +1,96 @@
 ---
-version: 0.2
-estado: borrador
+version: 0.4
+estado: en-progreso
 ---
 
 > [!summary] Resumen
-> Hoja de ruta de Samjoko Nav Extension. El objetivo final es ser una puerta de entrada web para una bóveda Obsidian.
+> Hoja de ruta de Samjoko Nav Extension. El objetivo final es ser el companion de navegador del ecosistema Vivero: capturar contenido web, convertirlo a Markdown estructurado y llevarlo a la bóveda de conocimiento.
 
-## V1 — Base funcional (actual)
+---
 
-- [x] Capturar contenido de páginas web a Markdown
-- [x] Popup con botón capturar, copiar y descargar
-- [x] Guardado directo a carpeta del disco vía `showDirectoryPicker`
-- [x] Nombres `SAM - {titulo}.md`
-- [x] Sin sobrescritura (sufijo -1, -2...)
-- [x] Inyección automática del content script si falla la conexión
-- [x] Página de opciones con selector de carpeta
+## Fase 0 — Saneamiento
 
-## V2 — Obsidian nativo (siguiente)
+Fundamentos técnicos antes de seguir construyendo. Sin esto, cada feature nueva acumula deuda.
+
+- [x] **i18n foundation**: `default_locale` en manifest, carpeta `_locales/`, `chrome.i18n.getMessage()` en todos los JS
+- [x] **Service Worker robusto**: corrección de race condition (top-level await → promesa de inicialización)
+- [x] **Bug título de archivo**: ahora usa el título real de la página web, no el del popup
+- [ ] **CSS unificado**: extraer `assets/comun.css` con estilos compartidos (body, button, mensajes)
+- [ ] **Variable `--texto-boton`** en `themes.css` — los botones usan `color: #fff` hardcodeado
+- [ ] **Refactor content script**: `extraerMarkdown()` devuelve `{bloques, metadata}` en vez de string plano
+- [ ] **`BarraProgreso` portable**: su CSS se mueve a `componentes/barra-progreso.css`
+
+---
+
+## Fase 1 — Popup 3 iconos + captura rápida
+
+Rediseño del popup con 3 botones-icono SVG inline (Heroicons outline, `currentColor`).
+
+- [ ] Layout de 3 iconos: Captura rápida, Captura con revisión, Configuración
+- [ ] Captura rápida: extrae → barra de progreso → guarda directo a la bóveda
+- [ ] Notificación toast de éxito/error (reemplaza `mensajeEstado`)
+- [ ] Tooltips en cada icono
+- [ ] Barra de progreso con texto descriptivo durante guardado
+- [ ] Atajo de teclado (`commands` en manifest)
+
+---
+
+## Fase 2 — Editor por bloques (Side Panel)
+
+Panel lateral de Chrome que muestra los bloques extraídos para revisar antes de guardar.
+
+- [ ] `sidePanel` en `manifest.json`, página `editor-bloques/editor.html`
+- [ ] Content script devuelve bloques individuales (párrafos, headers, listas, código, tablas, imágenes)
+- [ ] Cada bloque: checkbox para incluir/excluir + preview del contenido
+- [ ] Markdown final se regenera al marcar/desmarcar bloques
+- [ ] Metadatos detectados: autor, fecha (de meta tags), título limpio
+- [ ] Botones: Guardar en bóveda, Descargar, Copiar, Cancelar
+- [ ] Barra de progreso durante guardado
+
+---
+
+## Fase 3 — Configuración completa
+
+Página de opciones expandida con todas las preferencias del usuario.
+
+- [ ] **Idioma**: selector ES / EN (extensible a más)
+- [ ] **Apariencia**: selector de tema visual (samjoko, vivero, nautilus, akkoro)
+- [ ] **Bóveda**: selector de carpeta (ya existe) + subcarpetas configurables
+- [ ] **Formato de nota**: template de frontmatter YAML configurable
+- [ ] **Extracción**: elementos HTML a incluir/excluir, selectores CSS custom
+- [ ] **Atajos**: configuración de comandos de teclado
+- [ ] Persistencia en `chrome.storage.sync` para sincronización entre dispositivos
+- [ ] Service worker: mensajes CRUD de configuración
+
+---
+
+## Fase 4 — Obsidian / Vivero nativo
+
+Integración profunda con el ecosistema de la bóveda.
 
 - [ ] **Frontmatter YAML** en cada captura (fecha, fuente, etiquetas, tipo)
-- [ ] Template único de nota con campo `tipo` para taxonomía propia
-- [ ] Limpieza inteligente de contenido (excluir header, footer, nav, sidebars)
-- [ ] Filtros configurables en opciones (qué elementos incluir/excluir)
-- [ ] Detección automática de autor y fecha de publicación
-- [ ] Tags: extraer keywords de la página + tags por dominio
-- [ ] Usar `[[wikilinks]]` para enlaces internos
-- [ ] Botón "Abrir en Obsidian" tras guardar (`obsidian://`)
+- [ ] **Template de nota** con campo `tipo` para taxonomía propia
+- [ ] **Limpieza inteligente** de contenido (excluir header, footer, nav, sidebars configurable)
+- [ ] **Detección automática** de autor y fecha de publicación
+- [ ] **Tags**: extraer keywords de la página + tags por dominio
+- [ ] **`[[wikilinks]]`** para enlaces internos
+- [ ] **URI de Vivero** para abrir la nota directamente en la app
 
-## V3 — Madurez
+---
+
+## Fase 5 — Madurez
 
 - [ ] Migrar a Firefox
-- [ ] Atajo de teclado para captura rápida
 - [ ] Seleccionar elementos específicos de la página (clic para elegir)
-- [ ] Varias carpetas de destino dentro de la vault (configurable)
 - [ ] Vista previa del Markdown renderizado
+- [ ] Historial local de capturas
+- [ ] Exportación por lote
+
+---
 
 ## Futuro remoto
 
-- Historial local de capturas
-- Exportación por lote
 - Auto-etiquetado por IA
-- Sincronización bidireccional (web → Obsidian → web)
+- Sincronización bidireccional (web ↔ Vivero)
+- Soporte para más formatos de exportación (HTML, PDF)
+- Integración con APIs de lectura posterior (Pocket, Readwise)

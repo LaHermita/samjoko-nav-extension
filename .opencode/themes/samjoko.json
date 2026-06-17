@@ -1,0 +1,242 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "emberLight": "#f6b37a",
+    "ember": "#f28a3a",
+    "emberMid": "#e87528",
+    "emberDeep": "#d96a1f",
+    "emberDark": "#b84f18",
+    "emberBurnt": "#8c3a12",
+
+    "ashLight": "#d8d4cf",
+    "ash": "#b8b4af",
+    "ashDark": "#8a8783",
+
+    "bone": "#e2ddd6",
+    "boneDark": "#c7c2ba",
+
+    "coal10": "#e0e0e0",
+    "coal9": "#c4c4c4",
+    "coal8": "#9a9a9a",
+    "coal7": "#6f6f6f",
+    "coal6": "#4a4a4a",
+    "coal5": "#2f2f2f",
+    "coal4": "#1f1f1f",
+    "coal3": "#181818",
+    "coal2": "#121212",
+    "coal1": "#0c0c0c",
+
+    "diffAddBg": "#1a2a1a",
+    "diffDeleteBg": "#2a1a1a",
+    "diffChangeBg": "#1f1a1a"
+  },
+  "theme": {
+    "primary": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "secondary": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "accent": {
+      "dark": "emberLight",
+      "light": "emberLight"
+    },
+
+    "error": {
+      "dark": "emberBurnt",
+      "light": "emberBurnt"
+    },
+    "warning": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "success": {
+      "dark": "ashLight",
+      "light": "ashLight"
+    },
+    "info": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+
+    "text": {
+      "dark": "coal10",
+      "light": "coal1"
+    },
+    "textMuted": {
+      "dark": "coal7",
+      "light": "coal7"
+    },
+
+    "background": {
+      "dark": "coal3",
+      "light": "ashLight"
+    },
+    "backgroundPanel": {
+      "dark": "coal2",
+      "light": "ash"
+    },
+    "backgroundElement": {
+      "dark": "coal4",
+      "light": "ashDark"
+    },
+
+    "border": {
+      "dark": "coal1",
+      "light": "emberDark"
+    },
+    "borderActive": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "borderSubtle": {
+      "dark": "coal6",
+      "light": "coal6"
+    },
+
+    "diffAdded": {
+      "dark": "ashLight",
+      "light": "ashLight"
+    },
+    "diffRemoved": {
+      "dark": "emberBurnt",
+      "light": "emberBurnt"
+    },
+    "diffContext": {
+      "dark": "coal7",
+      "light": "coal7"
+    },
+    "diffHunkHeader": {
+      "dark": "emberDark",
+      "light": "emberDark"
+    },
+    "diffHighlightAdded": {
+      "dark": "ashDark",
+      "light": "ashDark"
+    },
+    "diffHighlightRemoved": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "diffAddedBg": {
+      "dark": "diffAddBg",
+      "light": "diffAddBg"
+    },
+    "diffRemovedBg": {
+      "dark": "diffDeleteBg",
+      "light": "diffDeleteBg"
+    },
+    "diffContextBg": {
+      "dark": "coal5",
+      "light": "coal5"
+    },
+    "diffLineNumber": {
+      "dark": "coal6",
+      "light": "coal6"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "diffAddBg",
+      "light": "diffAddBg"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "diffDeleteBg",
+      "light": "diffDeleteBg"
+    },
+
+    "markdownText": {
+      "dark": "coal10",
+      "light": "coal1"
+    },
+    "markdownHeading": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "markdownLink": {
+      "dark": "emberLight",
+      "light": "emberLight"
+    },
+    "markdownLinkText": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "markdownCode": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "markdownBlockQuote": {
+      "dark": "emberDark",
+      "light": "emberDark"
+    },
+    "markdownEmph": {
+      "dark": "coal10",
+      "light": "coal1"
+    },
+    "markdownStrong": {
+      "dark": "coal10",
+      "light": "coal1"
+    },
+    "markdownHorizontalRule": {
+      "dark": "coal6",
+      "light": "coal6"
+    },
+    "markdownListItem": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "markdownListEnumeration": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "markdownImage": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "markdownImageText": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "markdownCodeBlock": {
+      "dark": "coal10",
+      "light": "coal1"
+    },
+
+    "syntaxComment": {
+      "dark": "coal7",
+      "light": "coal7"
+    },
+    "syntaxKeyword": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "syntaxFunction": {
+      "dark": "emberLight",
+      "light": "emberLight"
+    },
+    "syntaxVariable": {
+      "dark": "coal10",
+      "light": "coal1"
+    },
+    "syntaxString": {
+      "dark": "ember",
+      "light": "ember"
+    },
+    "syntaxNumber": {
+      "dark": "emberMid",
+      "light": "emberMid"
+    },
+    "syntaxType": {
+      "dark": "emberLight",
+      "light": "emberLight"
+    },
+    "syntaxOperator": {
+      "dark": "emberDeep",
+      "light": "emberDeep"
+    },
+    "syntaxPunctuation": {
+      "dark": "coal8",
+      "light": "coal8"
+    }
+  }
+}

@@ -3,18 +3,18 @@ body {
   margin: 0;
   padding: 16px;
   width: 400px;
-  background: #1a1a2e;
-  color: #e0e0e0;
+  background: var(--fondo-principal);
+  color: var(--texto-primario);
 }
 
 h1 {
   font-size: 18px;
   margin: 0 0 16px 0;
-  color: #e94560;
+  color: var(--color-acento);
 }
 
 button {
-  background: #e94560;
+  background: var(--color-acento);
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -26,7 +26,7 @@ button {
 }
 
 button:hover {
-  background: #c73652;
+  filter: brightness(0.85);
 }
 
 button:disabled {
@@ -38,6 +38,51 @@ button:disabled {
   display: none;
 }
 
+.barra-progreso {
+  margin-top: 10px;
+}
+
+.barra-progreso-pista {
+  width: 100%;
+  height: 4px;
+  background: var(--fondo-activo);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barra-progreso-relleno {
+  height: 100%;
+  background: var(--color-acento);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.barra-progreso:not(.barra-progreso--determinado) .barra-progreso-relleno {
+  width: 30%;
+  animation: barra-indeterminada 1.5s ease-in-out infinite;
+}
+
+.barra-progreso--determinado .barra-progreso-relleno {
+  animation: none;
+}
+
+@keyframes barra-indeterminada {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(433%);
+  }
+}
+
+.barra-progreso-texto {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--texto-inactivo);
+  text-align: center;
+}
+
 #areaResultado {
   margin-top: 16px;
 }
@@ -45,9 +90,9 @@ button:disabled {
 #textoMarkdown {
   width: 100%;
   height: 250px;
-  background: #16213e;
-  color: #e0e0e0;
-  border: 1px solid #0f3460;
+  background: var(--fondo-editor);
+  color: var(--texto-primario);
+  border: 1px solid var(--borde-interfaz);
   border-radius: 6px;
   padding: 10px;
   font-family: 'Courier New', monospace;
@@ -68,28 +113,28 @@ button:disabled {
 }
 
 #botonCopiar {
-  background: #0f3460;
+  background: var(--fondo-activo);
 }
 
 #botonCopiar:hover {
-  background: #1a4a8a;
+  filter: brightness(1.15);
 }
 
 #botonDescargar {
-  background: #533483;
+  background: var(--fondo-destacado);
 }
 
 #botonDescargar:hover {
-  background: #6b44a8;
+  filter: brightness(1.15);
 }
 
 .botonGuardar {
-  background: #4ade80 !important;
-  color: #1a1a2e !important;
+  background: var(--estado-exito) !important;
+  color: var(--fondo-principal) !important;
 }
 
 .botonGuardar:hover {
-  background: #22c55e !important;
+  filter: brightness(0.9) !important;
 }
 
 #enlaceOpciones {
@@ -98,13 +143,13 @@ button:disabled {
 }
 
 #enlaceOpciones a {
-  color: #0f3460;
+  color: var(--texto-secundario);
   font-size: 12px;
   text-decoration: none;
 }
 
 #enlaceOpciones a:hover {
-  color: #1a4a8a;
+  color: var(--texto-primario);
   text-decoration: underline;
 }
 
@@ -112,5 +157,16 @@ button:disabled {
   margin-top: 12px;
   font-size: 13px;
   text-align: center;
-  color: #a0a0a0;
+}
+
+.mensaje-error {
+  color: var(--estado-error);
+}
+
+.mensaje-exito {
+  color: var(--estado-exito);
+}
+
+.mensaje-info {
+  color: var(--texto-inactivo);
 }

@@ -51,7 +51,7 @@ function obtenerNombreDesdeTitulo(titulo) {
     .toLowerCase()
     .replace(/[^a-z0-9áéíóúñü\s-]/g, '')
     .replace(/\s+/g, '-')
-    .substring(0, 60) || 'pagina-sin-titulo';
+    .substring(0, 60) || chrome.i18n.getMessage('fallbackTituloArchivo');
   return `SAM - ${nombreLimpio}`;
 }
 

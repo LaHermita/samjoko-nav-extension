@@ -1,0 +1,164 @@
+{
+  "nombreExtension": {
+    "message": "Samjoko Nav Extension",
+    "description": "Nombre de la extensión en el manifiesto"
+  },
+  "descripcionExtension": {
+    "message": "Captura el contenido de páginas web y lo convierte a Markdown",
+    "description": "Descripción corta de la extensión"
+  },
+  "tituloAccion": {
+    "message": "Samjoko Nav",
+    "description": "Tooltip del icono de la extensión en la barra de herramientas"
+  },
+
+  "tituloPopup": {
+    "message": "Samjoko Nav"
+  },
+  "botonCapturar": {
+    "message": "Capturar página como Markdown"
+  },
+  "botonCopiar": {
+    "message": "Copiar al portapapeles"
+  },
+  "botonDescargar": {
+    "message": "Descargar .md"
+  },
+  "botonGuardar": {
+    "message": "Guardar en carpeta"
+  },
+  "enlaceOpciones": {
+    "message": "Configurar carpeta de destino..."
+  },
+
+  "tituloOpciones": {
+    "message": "Samjoko Nav — Opciones"
+  },
+  "seccionCarpeta": {
+    "message": "Carpeta de destino"
+  },
+  "descripcionCarpeta": {
+    "message": "Seleccioná la carpeta donde se guardarán los archivos Markdown."
+  },
+  "botonSeleccionar": {
+    "message": "Seleccionar carpeta..."
+  },
+  "etiquetaCarpetaActual": {
+    "message": "Carpeta actual:"
+  },
+  "botonQuitarCarpeta": {
+    "message": "Quitar carpeta"
+  },
+
+  "barraProgresoExtrayendo": {
+    "message": "Extrayendo contenido..."
+  },
+  "barraProgresoConectando": {
+    "message": "Conectando con la página..."
+  },
+  "barraProgresoPreparando": {
+    "message": "Preparando archivo..."
+  },
+  "barraProgresoVerificando": {
+    "message": "Verificando nombre..."
+  },
+  "barraProgresoGuardando": {
+    "message": "Guardando archivo..."
+  },
+
+  "mensajeCapturaExitosa": {
+    "message": "Contenido capturado correctamente"
+  },
+  "mensajeCopiado": {
+    "message": "Copiado al portapapeles"
+  },
+  "mensajeCarpetaEliminada": {
+    "message": "Carpeta eliminada"
+  },
+  "mensajeCarpetaSeleccionada": {
+    "message": "Carpeta seleccionada: $nombre$",
+    "placeholders": {
+      "nombre": {
+        "content": "$1",
+        "example": "MiBoveda"
+      }
+    }
+  },
+  "mensajeGuardadoComo": {
+    "message": "Guardado como $archivo$",
+    "placeholders": {
+      "archivo": {
+        "content": "$1",
+        "example": "SAM - articulo.md"
+      }
+    }
+  },
+  "mensajeDescargadoComo": {
+    "message": "Descargado como $archivo$",
+    "placeholders": {
+      "archivo": {
+        "content": "$1",
+        "example": "SAM - articulo.md"
+      }
+    }
+  },
+
+  "errorPestaniaActiva": {
+    "message": "No se pudo acceder a la pestaña activa"
+  },
+  "errorSinContenido": {
+    "message": "No se encontró contenido en la página"
+  },
+  "errorGenerico": {
+    "message": "Error: $detalle$",
+    "placeholders": {
+      "detalle": {
+        "content": "$1",
+        "example": "Error de conexión"
+      }
+    }
+  },
+  "errorCopiado": {
+    "message": "No se pudo copiar al portapapeles"
+  },
+  "errorSinCarpeta": {
+    "message": "No hay carpeta configurada. Abrí Opciones para seleccionar una."
+  },
+  "errorGuardado": {
+    "message": "Error al guardar: $detalle$",
+    "placeholders": {
+      "detalle": {
+        "content": "$1",
+        "example": "Permiso denegado"
+      }
+    }
+  },
+  "errorSeleccionCarpeta": {
+    "message": "Error al seleccionar carpeta: $detalle$",
+    "placeholders": {
+      "detalle": {
+        "content": "$1",
+        "example": "Permiso denegado"
+      }
+    }
+  },
+  "errorSWCarpetaNoConfigurada": {
+    "message": "Carpeta no configurada. Abrí Opciones y seleccionala de nuevo."
+  },
+  "errorSWPermisoDenegado": {
+    "message": "Permiso denegado. Volvé a seleccionar la carpeta en Opciones."
+  },
+
+  "seccionEnlaces": {
+    "message": "Enlaces"
+  },
+  "seccionFuente": {
+    "message": "Fuente"
+  },
+  "textoSinTitulo": {
+    "message": " (sin título)"
+  },
+  "fallbackTituloArchivo": {
+    "message": "pagina-sin-titulo"
+  }
+}

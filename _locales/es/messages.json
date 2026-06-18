@@ -41,7 +41,7 @@
     "message": "Carpeta de destino"
   },
   "descripcionCarpeta": {
-    "message": "Seleccioná la carpeta donde se guardarán los archivos Markdown."
+    "message": "Selecciona la carpeta donde se guardarán los archivos Markdown."
   },
   "botonSeleccionar": {
     "message": "Seleccionar carpeta..."
@@ -125,7 +125,7 @@
     "message": "No se pudo copiar al portapapeles"
   },
   "errorSinCarpeta": {
-    "message": "No hay carpeta configurada. Abrí Opciones para seleccionar una."
+    "message": "No hay carpeta configurada. Abre Opciones para seleccionar una."
   },
   "errorGuardado": {
     "message": "Error al guardar: $detalle$",
@@ -146,10 +146,10 @@
     }
   },
   "errorSWCarpetaNoConfigurada": {
-    "message": "Carpeta no configurada. Abrí Opciones y seleccionala de nuevo."
+    "message": "Carpeta no configurada. Abre Opciones y selecciónala de nuevo."
   },
   "errorSWPermisoDenegado": {
-    "message": "Permiso denegado. Volvé a seleccionar la carpeta en Opciones."
+    "message": "Permiso denegado. Vuelve a seleccionar la carpeta en Opciones."
   },
 
   "seccionEnlaces": {
@@ -196,7 +196,7 @@
     "message": "© HarpoPan"
   },
   "pieTextoApoyo": {
-    "message": "Si querés apoyar el proyecto, visitá"
+    "message": "Si quieres apoyar el proyecto, visita"
   },
 
   "botonEditorBloquesTitulo": {

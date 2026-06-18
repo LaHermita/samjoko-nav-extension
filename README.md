@@ -58,7 +58,7 @@
 | Nautilus | Cálido          | `nautilus`   |
 | Akkoro   | Cyberpunk       | `akkoro`     |
 
-El tema por defecto es **Samjoko**. Para cambiar de tema, modificá el atributo `data-theme` en el `<html>` o persistí la preferencia con `chrome.storage`.
+El tema por defecto es **Samjoko**. Para cambiar de tema, modifica el atributo `data-theme` en el `<html>` o persiste la preferencia con `chrome.storage`.
 
 ---
 
@@ -77,10 +77,10 @@ El tema por defecto es **Samjoko**. Para cambiar de tema, modificá el atributo 
 git clone https://github.com/usuario/samjoko-nav-extension.git
 
 # Cargar en Chrome
-# 1. Abrí chrome://extensions
-# 2. Activá «Modo desarrollador»
+# 1. Abre chrome://extensions
+# 2. Activa «Modo desarrollador»
 # 3. Clic en «Cargar descomprimida»
-# 4. Seleccioná la carpeta del proyecto
+# 4. Selecciona la carpeta del proyecto
 ```
 
 ---

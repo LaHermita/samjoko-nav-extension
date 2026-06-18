@@ -1,5 +1,5 @@
 body {
-  padding: 24px;
+  padding: 32px 24px;
 }
 
 #contenedor {
@@ -7,57 +7,212 @@ body {
   margin: 0 auto;
 }
 
-h1 {
-  font-size: 24px;
-  color: var(--color-acento);
-  margin: 0 0 32px 0;
+#encabezado {
+  margin-bottom: 32px;
 }
 
-h2 {
-  font-size: 18px;
-  color: var(--texto-primario);
-  margin: 0 0 8px 0;
+#marca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#infoMarca h1 {
+  font-size: 24px;
+  color: var(--color-acento);
+  margin: 0;
+}
+
+#iconoMarca img {
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  background: var(--fondo-panel);
+}
+
+#subtituloPagina {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--texto-inactivo);
+  margin: 8px 0 0 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borde-suave);
 }
 
 section {
   background: var(--fondo-editor);
   border: 1px solid var(--borde-interfaz);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 24px;
   margin-bottom: 16px;
 }
 
-p {
+#cabeceraSeccion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--color-acento);
+}
+
+#cabeceraSeccion h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--texto-primario);
+  margin: 0;
+}
+
+#descripcionCarpeta {
   font-size: 14px;
   color: var(--texto-inactivo);
-  margin: 0 0 16px 0;
+  margin: 0 0 18px 0;
+  line-height: 1.5;
 }
 
-#botonLimpiar {
-  background: var(--fondo-destacado);
-  margin-left: 8px;
+#botonSeleccionar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
 }
 
-#botonLimpiar:hover {
-  filter: brightness(1.15);
+#botonSeleccionar svg {
+  flex-shrink: 0;
 }
 
 #infoCarpeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-top: 16px;
-  padding: 12px;
+  padding: 14px 16px;
   background: var(--fondo-activo);
-  border-radius: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--borde-suave);
 }
 
-#infoCarpeta p {
-  margin: 0;
-  color: var(--texto-primario);
+#infoCarpeta > svg {
+  flex-shrink: 0;
+  color: var(--estado-exito);
 }
 
-#infoCarpeta strong {
+#detalleCarpeta {
+  flex: 1;
+  min-width: 0;
+}
+
+#etiquetaCarpeta {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--texto-inactivo);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 #nombreCarpeta {
+  display: block;
+  font-size: 14px;
+  color: var(--texto-primario);
+  word-break: break-all;
+}
+
+#botonLimpiar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--borde-interfaz);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--texto-inactivo);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+#botonLimpiar:hover {
+  color: var(--estado-error);
+  border-color: var(--estado-error);
+  background: var(--fondo-hover);
+}
+
+#zonaToast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+  pointer-events: none;
+  min-width: 280px;
+  max-width: 520px;
+}
+
+.toast {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.toast.toast-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-exito {
+  background: var(--fondo-panel);
   color: var(--estado-exito);
+  border-color: var(--estado-exito);
+}
+
+.toast-error {
+  background: var(--fondo-panel);
+  color: var(--estado-error);
+  border-color: var(--estado-error);
+}
+
+.toast-info {
+  background: var(--fondo-panel);
+  color: var(--texto-inactivo);
+  border-color: var(--borde-interfaz);
+}
+
+#piePagina {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--borde-suave);
+}
+
+#textoCopyright {
+  font-size: 13px;
+  color: var(--texto-inactivo);
+  margin: 0 0 4px 0;
+}
+
+#textoApoyo {
+  font-size: 12px;
+  color: var(--texto-inactivo);
+  margin: 0;
+}
+
+#textoApoyo a {
+  color: var(--color-acento);
+  text-decoration: none;
+}
+
+#textoApoyo a:hover {
+  text-decoration: underline;
 }

@@ -1,6 +1,6 @@
 {
   "nombreExtension": {
-    "message": "Samjoko Nav Extension",
+    "message": "Samjoko Web Clipper",
     "description": "Nombre de la extensión en el manifiesto"
   },
   "descripcionExtension": {
@@ -8,12 +8,12 @@
     "description": "Descripción corta de la extensión"
   },
   "tituloAccion": {
-    "message": "Samjoko Nav",
+    "message": "Samjoko Web Clipper",
     "description": "Tooltip del icono de la extensión en la barra de herramientas"
   },
 
   "tituloPopup": {
-    "message": "Samjoko Nav"
+    "message": "Samjoko Web Clipper"
   },
   "botonCapturar": {
     "message": "Capturar página como Markdown"
@@ -32,7 +32,10 @@
   },
 
   "tituloOpciones": {
-    "message": "Samjoko Nav — Opciones"
+    "message": "Samjoko Web Clipper — Opciones"
+  },
+  "subtituloOpciones": {
+    "message": "Opciones"
   },
   "seccionCarpeta": {
     "message": "Carpeta de destino"
@@ -187,5 +190,12 @@
   },
   "notificacionErrorGuardado": {
     "message": "Error al guardar la página"
+  },
+
+  "pieCopyright": {
+    "message": "© HarpoPan"
+  },
+  "pieTextoApoyo": {
+    "message": "Si querés apoyar el proyecto, visitá"
   }
 }

@@ -37,7 +37,7 @@ async function guardarArchivoEnCarpeta(contenido, nombreArchivo) {
 
 chrome.runtime.onInstalled.addListener((detalles) => {
   if (detalles.reason === 'install') {
-    console.log('Samjoko Nav Extension instalada');
+    console.log('Samjoko Web Clipper instalada');
   }
 });
 
@@ -114,7 +114,7 @@ chrome.commands.onCommand.addListener(async (comando) => {
         chrome.notifications.create('captura-rapida-error', {
           type: 'basic',
           iconUrl: 'assets/icons/Samjoko-Icono_Circular_128px.png',
-          title: 'Samjoko Nav',
+          title: chrome.i18n.getMessage('nombreExtension'),
           message: chrome.i18n.getMessage('errorSinContenido')
         });
         return;
@@ -125,7 +125,7 @@ chrome.commands.onCommand.addListener(async (comando) => {
       chrome.notifications.create('captura-rapida-error', {
         type: 'basic',
         iconUrl: 'assets/icons/Samjoko-Icono_Circular_128px.png',
-        title: 'Samjoko Nav',
+        title: chrome.i18n.getMessage('nombreExtension'),
         message: chrome.i18n.getMessage('errorSinContenido')
       });
       return;
@@ -137,7 +137,7 @@ chrome.commands.onCommand.addListener(async (comando) => {
       chrome.notifications.create('captura-rapida-error', {
         type: 'basic',
         iconUrl: 'assets/icons/Samjoko-Icono_Circular_128px.png',
-        title: 'Samjoko Nav',
+        title: chrome.i18n.getMessage('nombreExtension'),
         message: chrome.i18n.getMessage('errorSWCarpetaNoConfigurada')
       });
       return;
@@ -150,14 +150,14 @@ chrome.commands.onCommand.addListener(async (comando) => {
     chrome.notifications.create('captura-rapida-exito', {
       type: 'basic',
       iconUrl: 'assets/icons/Samjoko-Icono_Circular_128px.png',
-      title: 'Samjoko Nav',
+      title: chrome.i18n.getMessage('nombreExtension'),
       message: chrome.i18n.getMessage('notificacionGuardadoExitoso', nombreGuardado)
     });
   } catch (errorIgnorado) {
     chrome.notifications.create('captura-rapida-error', {
       type: 'basic',
       iconUrl: 'assets/icons/Samjoko-Icono_Circular_128px.png',
-      title: 'Samjoko Nav',
+      title: chrome.i18n.getMessage('nombreExtension'),
       message: chrome.i18n.getMessage('notificacionErrorGuardado')
     });
   }

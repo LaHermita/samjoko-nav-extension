@@ -1,10 +1,10 @@
 <p align="center">
   <picture>
-    <img alt="Samjoko Nav" src="assets/icons/Samjoko-Icono_Circular_128px.png" width="96" height="96">
+    <img alt="Samjoko Web Clipper" src="assets/icons/Samjoko-Icono_Circular_128px.png" width="96" height="96">
   </picture>
 </p>
 
-<h1 align="center">Samjoko Nav Extension</h1>
+<h1 align="center">Samjoko Web Clipper</h1>
 
 <p align="center">
   <strong lang="es">Companion de navegador del Vivero. Captura páginas web, conviértelas a Markdown y llévalas a tu bóveda de conocimiento.</strong>
@@ -142,7 +142,7 @@ La extensión **no recolecta, almacena ni transmite datos personales**. Todo el 
 
 ## Privacidad / Privacy
 
-Samjoko Nav Extension:
+Samjoko Web Clipper:
 
 - No envía datos a servidores externos.
 - No utiliza servicios de terceros.
@@ -154,4 +154,4 @@ Samjoko Nav Extension:
 
 ## Licencia / License
 
-MIT © Samjoko
+MIT © [HarpoPan](https://ko-fi.com/harpopan)

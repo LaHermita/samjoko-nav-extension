@@ -5,7 +5,7 @@ fase: 1-completada
 ---
 
 > [!summary] Resumen
-> Hoja de ruta de Samjoko Nav Extension. El objetivo final es ser el companion de navegador del ecosistema Vivero: capturar contenido web, convertirlo a Markdown estructurado y llevarlo a la bóveda de conocimiento.
+> Hoja de ruta de Samjoko Web Clipper. El objetivo final es ser el companion de navegador del ecosistema Vivero: capturar contenido web, convertirlo a Markdown estructurado y llevarlo a la bóveda de conocimiento.
 
 ---
 

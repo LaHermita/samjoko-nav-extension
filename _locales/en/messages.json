@@ -1,16 +1,16 @@
 {
   "nombreExtension": {
-    "message": "Samjoko Nav Extension"
+    "message": "Samjoko Web Clipper"
   },
   "descripcionExtension": {
     "message": "Captures web page content and converts it to Markdown"
   },
   "tituloAccion": {
-    "message": "Samjoko Nav"
+    "message": "Samjoko Web Clipper"
   },
 
   "tituloPopup": {
-    "message": "Samjoko Nav"
+    "message": "Samjoko Web Clipper"
   },
   "botonCapturar": {
     "message": "Capture page as Markdown"
@@ -29,7 +29,10 @@
   },
 
   "tituloOpciones": {
-    "message": "Samjoko Nav — Options"
+    "message": "Samjoko Web Clipper — Options"
+  },
+  "subtituloOpciones": {
+    "message": "Options"
   },
   "seccionCarpeta": {
     "message": "Destination folder"
@@ -184,5 +187,12 @@
   },
   "notificacionErrorGuardado": {
     "message": "Error saving the page"
+  },
+
+  "pieCopyright": {
+    "message": "© HarpoPan"
+  },
+  "pieTextoApoyo": {
+    "message": "If you'd like to support the project, visit"
   }
 }

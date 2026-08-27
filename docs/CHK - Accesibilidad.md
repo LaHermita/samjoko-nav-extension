@@ -1,6 +1,9 @@
 ---
 tipo: CHK
 tema: Accesibilidad
+proyecto: Samjoko Web Clipper
+version: 1.1
+fecha: 2026-08-26
 ---
 
 # CHK - Accesibilidad
@@ -9,12 +12,12 @@ Checklist verificable de accesibilidad para Samjoko Web Clipper. Basada en WCAG 
 
 ## Estructura semántica
 
-- [ ] **Popup**: `<header>` + `<main>` + `<nav>` correctos
-- [ ] **Opciones**: `<main>` con `<section>`s, `<footer>`, `<h1>` + `<h3>` jerarquía correcta
-- [ ] **Editor**: `<header>` + `<main>` + `<h1>` + `<h2>` jerarquía correcta
-- [ ] **Onboarding**: `role="dialog"`, `aria-modal="true"`, foco inicial gestionado
-- [ ] **Landmarks**: `<nav>` con `aria-label` dinámico
-- [ ] **Idioma**: `lang` en `<html>` se actualiza al cambiar idioma (popup, opciones, editor)
+- [x] **Popup**: `<header>` + `<main>` + `<nav>` correctos
+- [x] **Opciones**: `<main>` con `<section>`s, `<footer>`, `<h1>` + `<h3>` jerarquía correcta
+- [x] **Editor**: `<header>` + `<main>` + `<h1>` + `<h2>` jerarquía correcta
+- [x] **Onboarding**: `role="dialog"`, `aria-modal="true"`, foco inicial gestionado
+- [x] **Landmarks**: `<nav>` con `aria-label` dinámico
+- [x] **Idioma**: `lang` en `<html>` se actualiza al cambiar idioma (popup, opciones, editor)
 
 ## Teclado
 
@@ -23,18 +26,18 @@ Checklist verificable de accesibilidad para Samjoko Web Clipper. Basada en WCAG 
 - [ ] **Editor**: Tab recorre reescanear, metadatos, botón seleccionar, bloques, acciones
 - [x] **Onboarding**: Tab cíclico dentro del diálogo, sin escapes
 - [ ] **Focus visible**: todos los elementos interactivos tienen `:focus-visible`
-- [ ] **Atajos documentados**: Ctrl+Shift+K y Ctrl+Shift+S visibles en opciones y popup
+- [x] **Atajos documentados**: Ctrl+Shift+K y Ctrl+Shift+S visibles en opciones y popup
 
 ## Lectores de pantalla
 
-- [ ] **SVG decorativos**: `aria-hidden="true"` en todos los iconos decorativos
-- [ ] **Botones funcionales**: todos con `aria-label` descriptivo
-- [ ] **Formularios**: todos `<input>`/`<select>`/`<textarea>` con `<label for="...">`
-- [ ] **Toasts**: `#zonaToast` con `aria-live="polite"`
-- [ ] **Barra progreso**: `role="progressbar"` + `aria-live="polite"`
+- [x] **SVG decorativos**: `aria-hidden="true"` en todos los iconos decorativos
+- [x] **Botones funcionales**: todos con `aria-label` descriptivo
+- [x] **Formularios**: todos `<input>`/`<select>`/`<textarea>` con `<label for="...">`
+- [x] **Toasts**: `#zonaToast` con `aria-live="polite"`
+- [x] **Barra progreso**: `role="progressbar"` + `aria-live="polite"`
 - [x] **Info carpeta**: `role="status"` para anunciar cambios dinámicos
-- [ ] **Onboarding**: `aria-describedby` vinculado a la descripción del paso
-- [ ] **Select all toggle**: `aria-pressed` dinámico
+- [x] **Onboarding**: `aria-describedby` vinculado a la descripción del paso
+- [x] **Select all toggle**: `aria-pressed` dinámico
 
 ## Contraste y color
 
